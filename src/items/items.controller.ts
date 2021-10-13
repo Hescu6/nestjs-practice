@@ -2,24 +2,33 @@ import { Controller, Get, Post, Put, Delete, Body, Req, Res, Param } from '@nest
 import { CreateItemDto } from './dto/create-item.dto';
 import { Request, Response } from 'express';
 import { identity } from 'rxjs';
+import { ItemsService } from './items.service';
+import { Item } from './interfaces/item.interface';
 
 @Controller('items')    //name of route
 export class ItemsController {
 
+    constructor(private readonly itemsService: ItemsService) {}
 
-    @Get()              //decorator for get, post, delete, put functions
-    /* YOU CAN USE HE req/res as in express but it's not the nestjs way */
-    findAll(@Req() req: Request, @Res() res:Response):Response {  //name of the function 
+    // @Get()              //decorator for get, post, delete, put functions
+    // /* YOU CAN USE HE req/res as in express but it's not the nestjs way */
+    // findAll(@Req() req: Request, @Res() res:Response):Response {  //name of the function 
 
-        console.log(req.url);
-        return res.send('Hellow Works');
-        // return 'Get All Items'; //response
+    //     console.log(req.url);
+    //     return res.send('Hellow Works');
+    //     // return 'Get All Items'; //response
+    // }
+
+    @Get()
+    findAll(): Item[]{
+        return this.itemsService.findAll();
     }
+    
 
-    @Get(':id')
-    findOne(@Param() param): string {
-        return `Item - ${param.id}`
-    }
+   @Get(':id')
+    findOne(@Param() param): Item {
+        return this.itemsService.findOne(param.id);
+    } 
 
 
 
