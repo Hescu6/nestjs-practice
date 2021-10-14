@@ -1,5 +1,13 @@
-  Practice building a simple RESTful API with NestJs and MongoDb
+  # Practice building a simple RESTful API with NestJs and MongoDb
+  
+TODO - set URI as environment variable
 
+To use MongoDB, add a keys.ts file in src/config folder and type your mongo information in the following format (Get URI from Atlas or local)
+  ```
+  export default {
+    mongoURI: 'mongodb+srvxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  }
+  ```
 
 ## Install dependencies
 ```
