@@ -36,20 +36,18 @@ export class ItemsController {
         defines how the data will be send over the network
     */
     @Post()
-    create(@Body() createItemDto: CreateItemDto):string {
-        return `Name: ${createItemDto.name}
-                Description: ${createItemDto.description}
-                `;
+    create(@Body() createItemDto: CreateItemDto):Promise<Item> {
+        return this.itemsService.create(createItemDto);
     }
 
     @Delete(':id')
     delete(@Param('id') id:string){
-        return `Delete ${id}`;
+        return this.itemsService.delete(id);
     }
 
     @Put(':id')
-    update(@Body() updateItemDto: CreateItemDto, @Param('id') id): string {
-        return `Update ${id} - Name: ${updateItemDto.name}`;
+    update(@Body() updateItemDto: CreateItemDto, @Param('id') id): Promise<Item> {
+        return this.itemsService.update(id, updateItemDto);
     }
 
 }
