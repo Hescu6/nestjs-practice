@@ -12,7 +12,7 @@ import config from './config/keys';
     ItemsModule,
     MongooseModule.forRoot(config.mongoURI)
   ],
-  controllers: [AppController, ItemsController],
-  providers: [AppService, ItemsService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
